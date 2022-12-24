@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React 初识</title>
+</head>
+
+<body>
+	<script type="text/javascript" crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script type="text/javascript" crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<div id="root"></div>
+
+	<script type="text/babel">
+		class XXX extends React.Component {
+			constructor(props) {
+				super(props)
+				this.state = {
+					mode: true
+				}
+			}
+			render() {
+				const span = React.createElement(
+					'span',
+					{
+						className: "style",
+						key: new Date().getTime() + 1111
+					},
+					this.state.mode ? '在干嘛？' : "在学习！"
+				)
+
+				const btn = React.createElement(
+					'button',
+					{
+						key: new Date().getTime() + 2222,
+						onClick: () => {
+							return this.setState({
+								mode: !this.state.mode
+							})
+						}
+					},
+					'change'
+				)
+
+				const wrap = React.createElement(
+					'div',
+					{
+						className: new Date().getTime()
+					},
+					[span, btn]
+				)
+
+				return wrap
+			}
+		}
+
+		ReactDOM.render(
+			React.createElement(XXX),
+			document.getElementById('root')
+		)
+	</script>
+</body>
+
+</html>
